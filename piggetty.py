@@ -3,16 +3,6 @@
 # 9/30/15
 # Week 4 Lab
 
-# Define a function called piggy(string) that returns a string
-
-def piggy(word):
-	
-	# Magic Happens Here
-	pig = word
-	# Ignore previous line
-	
-	return pig
-
 # Open the file *getty.txt* for reading.  
 gettyfile = open("getty.txt", "r")
 # Open a new file *piggy.txt* for writing.  
@@ -24,31 +14,36 @@ address = address.replace(".","")
 address = address.replace(",","")
 address = address.replace("-","")
 
-print (address)
+def piggy():
 # Split the string into a list of words.  
-listaddress = address.split()
+	listaddress = address.split()
 # Create a new empty string.  
-piggystring = ""
-# Loop through the list of words, pigifying each one.  
-vowels = "aeiouAEIOU"     
-piggynewword = ""
+	piggystring = ""
+  
+	vowels = "aeiouAEIOU"     
+	piggynewword = ""
 
 #Loops through every word in the Gettysburg Address
-for word in listaddress:
-	if word[0] in vowels:
-		piggynewword = word + "yay"
-		piggystring = piggystring + " " + piggynewword
-	else:
-		n=0
-		for letter in word:
-			if letter in vowels:
+	for word in listaddress:
+		if word[0] in vowels:
+			piggynewword = word + "yay"
+			piggystring = piggystring + " " + piggynewword
+		else:
+			n=0
+# Finds the first vowel and then changes word to PigLatin			
+			for letter in word:
+				if letter in vowels:
 # Add the pigified word (and a space) to the new string.
-				piggynewword = (word[n:] + word[0:n] + "ay")
-				piggystring = piggystring + " " + piggynewword
-				break
-			n=1
+					piggynewword = (word[n:] + word[0:n] + "ay")
+					piggystring = piggystring + " " + piggynewword
+					break
+				n+=1
+	return piggystring
+			
+# Calls the function piggy()
+finalpiggystring = piggy()
 # Write the new string to piggy.txt.  
-piggyfile.write(piggystring)
+piggyfile.write(finalpiggystring)
 # close the files.
 piggyfile.close()
 gettyfile.close()
